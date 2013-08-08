@@ -1,7 +1,11 @@
 <?php
 
 $yourTransifexUsername = 'transifex_user_or_email';
-$yourTransifexPassword = 'transifex_password'; 
+$yourTransifexPassword = 'transifex_password';
+ 
+$language = 'nl';
+$project = 'magento-ce-17';
+
 
 @mkdir('downloads',0777);
 if(!file_exists('downloads')) {
@@ -83,7 +87,7 @@ Mage_Paybox';
 $packages = explode("\n",$packages);
 
 $loginUrl = 'https://www.transifex.com/signin/';
-$url = 'https://www.transifex.com/projects/p/magento-ce-17/resource/PACKAGE/l/nl/download/for_use/';
+$url = 'https://www.transifex.com/projects/p/' . $project . '/resource/PACKAGE/l/' . $language . '/download/for_use/';
 
 $loginPostInfo = array(
     'identification'=>$yourTransifexUsername,
