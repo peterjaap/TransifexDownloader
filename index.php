@@ -131,4 +131,6 @@ foreach($packages as $package) {
 
 if(count($packages) == count(scandir('downloads'))-2) {
     echo 'All files are downloaded.'."\n";
+} else {
+    echo 'Apparently, something went completely wrong and it\'s all your fault.';
 }
