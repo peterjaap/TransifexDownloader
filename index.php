@@ -107,7 +107,6 @@ $CSRFToken = $cookieLineData[6];
 
 /* Set CSRF token in login post info */
 $loginPostInfo['csrfmiddlewaretoken'] = $CSRFToken;
-$loginPostInfo = http_build_query($loginPostInfo);
 
 /* Do the login post */
 $ch = curL_init($loginUrl);
@@ -117,13 +116,12 @@ curl_setopt($ch, CURLOPT_REFERER, $loginUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookies.txt');
-curl_setopt($ch, CURLOPT_POSTFIELDS, $loginPostInfo);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($loginPostInfo));
 curl_exec($ch);
 
 /* Loop through all packages to retrieve all files */
 foreach($packages as $package) {
     $csvUrl = str_replace('PACKAGE',strtolower($package),$url);
-    curl_setopt($ch, CURLOPT_REFERER, $loginUrl);
     curl_setopt($ch, CURLOPT_URL, $csvUrl);
     $csv = curl_exec($ch);
         
